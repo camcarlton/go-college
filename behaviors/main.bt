@@ -1,0 +1,171 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "asset-pack": "core",
+        "children": [
+            "49c365d4-ab43-4823-a145-0aa507c2e73e",
+            "67b6934f-0c7e-47c8-b7dd-5ca58ad48fd5",
+            "0e5a9215-9fcd-4275-a1aa-85d0522363f8",
+            "75ba6549-7bed-4038-8291-63a8668807d5"
+        ],
+        "decorators": [],
+        "options": {}
+    },
+    "meta": {
+        "version": 1
+    },
+    "49c365d4-ab43-4823-a145-0aa507c2e73e": {
+        "id": "49c365d4-ab43-4823-a145-0aa507c2e73e",
+        "class": "ListenEmbedded",
+        "name": "",
+        "options": {
+            "rule": "hey_jibo",
+            "onResult": [
+                "(listener) => {",
+                "\tlistener.on('hey-jibo', function(asrResult, speakerIds) {",
+                "",
+                "\t});",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "67b6934f-0c7e-47c8-b7dd-5ca58ad48fd5": {
+        "id": "67b6934f-0c7e-47c8-b7dd-5ca58ad48fd5",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "greeting.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "0e5a9215-9fcd-4275-a1aa-85d0522363f8": {
+        "id": "0e5a9215-9fcd-4275-a1aa-85d0522363f8",
+        "class": "PlayAudio",
+        "name": "",
+        "options": {
+            "audioPath": "FX_Whistle.mp3"
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "75ba6549-7bed-4038-8291-63a8668807d5": {
+        "id": "75ba6549-7bed-4038-8291-63a8668807d5",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            "a52d4523-539e-4285-a5a7-56e7caca73d2",
+            "5ad23a9a-2b94-482c-bf59-ceadfae90e3e",
+            "1af41a85-5432-43c8-876c-e57cde46fd3d"
+        ]
+    },
+    "a52d4523-539e-4285-a5a7-56e7caca73d2": {
+        "id": "a52d4523-539e-4285-a5a7-56e7caca73d2",
+        "class": "ListenJs",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "getRule": [
+                "(callback) => {",
+                "    callback(\"TopRule = $* Red Raiders $*;\");",
+                "}"
+            ],
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "75ba6549-7bed-4038-8291-63a8668807d5"
+    },
+    "5ad23a9a-2b94-482c-bf59-ceadfae90e3e": {
+        "id": "5ad23a9a-2b94-482c-bf59-ceadfae90e3e",
+        "class": "ListenJs",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "getRule": [
+                "(callback) => {",
+                "    callback(\"TopRule = $* TTU $*;\");",
+                "}"
+            ],
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "75ba6549-7bed-4038-8291-63a8668807d5"
+    },
+    "1af41a85-5432-43c8-876c-e57cde46fd3d": {
+        "id": "1af41a85-5432-43c8-876c-e57cde46fd3d",
+        "class": "ListenJs",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "getRule": [
+                "(callback) => {",
+                "    callback(\"TopRule = $* Texas Tech $*;\");",
+                "}"
+            ],
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "75ba6549-7bed-4038-8291-63a8668807d5"
+    }
+}
