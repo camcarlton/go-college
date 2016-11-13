@@ -8,7 +8,9 @@
             "49c365d4-ab43-4823-a145-0aa507c2e73e",
             "67b6934f-0c7e-47c8-b7dd-5ca58ad48fd5",
             "0e5a9215-9fcd-4275-a1aa-85d0522363f8",
-            "75ba6549-7bed-4038-8291-63a8668807d5"
+            "7c7860ce-c2b9-46c5-8cab-fa6981b2bf7d",
+            "08349313-06ae-4b96-a42f-e153beb826c2",
+            "a10b0c33-0350-4230-9f81-0826e5fd3fa4"
         ],
         "decorators": [],
         "options": {}
@@ -57,115 +59,148 @@
         "asset-pack": "core",
         "parent": 1
     },
-    "75ba6549-7bed-4038-8291-63a8668807d5": {
-        "id": "75ba6549-7bed-4038-8291-63a8668807d5",
-        "class": "Parallel",
+    "7c7860ce-c2b9-46c5-8cab-fa6981b2bf7d": {
+        "id": "7c7860ce-c2b9-46c5-8cab-fa6981b2bf7d",
+        "class": "Subtree",
         "name": "",
         "options": {
-            "succeedOnOne": false
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
         },
         "asset-pack": "core",
         "parent": 1,
-        "children": [
-            "a52d4523-539e-4285-a5a7-56e7caca73d2",
-            "5ad23a9a-2b94-482c-bf59-ceadfae90e3e",
-            "1af41a85-5432-43c8-876c-e57cde46fd3d"
+        "decorators": [
+            "c4be766a-3866-4e94-8ab5-97a5a49a9aa1"
         ]
     },
-    "a52d4523-539e-4285-a5a7-56e7caca73d2": {
-        "id": "a52d4523-539e-4285-a5a7-56e7caca73d2",
-        "class": "ListenJs",
+    "08349313-06ae-4b96-a42f-e153beb826c2": {
+        "id": "08349313-06ae-4b96-a42f-e153beb826c2",
+        "class": "Sequence",
         "name": "",
-        "options": {
-            "getOptions": [
-                "() => {",
-                "    let options = {",
-                "        heyJibo: false,",
-                "        detectEnd: false,",
-                "        incremental: false,",
-                "        authenticateSpeaker: ''",
-                "    }",
-                "    return options;",
-                "}"
-            ],
-            "getRule": [
-                "(callback) => {",
-                "    callback(\"TopRule = $* Red Raiders $*;\");",
-                "}"
-            ],
-            "onResult": [
-                "(listener) => {",
-                "    listener.on('cloud', function(asrResult, speakerIds) {",
-                "",
-                "    });",
-                "}"
-            ]
-        },
+        "options": {},
         "asset-pack": "core",
-        "parent": "75ba6549-7bed-4038-8291-63a8668807d5"
+        "parent": 1,
+        "children": [
+            "4a38a232-912f-4da0-ad9d-c221f15b60a8"
+        ],
+        "decorators": [
+            "fc607d46-a3ce-4b07-85ac-f1aad6ec75e7"
+        ]
     },
-    "5ad23a9a-2b94-482c-bf59-ceadfae90e3e": {
-        "id": "5ad23a9a-2b94-482c-bf59-ceadfae90e3e",
-        "class": "ListenJs",
+    "fc607d46-a3ce-4b07-85ac-f1aad6ec75e7": {
+        "id": "fc607d46-a3ce-4b07-85ac-f1aad6ec75e7",
+        "class": "StartOnCondition",
         "name": "",
         "options": {
-            "getOptions": [
+            "init": [
                 "() => {",
-                "    let options = {",
-                "        heyJibo: false,",
-                "        detectEnd: false,",
-                "        incremental: false,",
-                "        authenticateSpeaker: ''",
-                "    }",
-                "    return options;",
+                "  if(notpad.moodNext == 'happy'){",
+                "    return true;",
+                "  }",
+                "  return false;",
                 "}"
             ],
-            "getRule": [
-                "(callback) => {",
-                "    callback(\"TopRule = $* TTU $*;\");",
-                "}"
-            ],
-            "onResult": [
-                "(listener) => {",
-                "    listener.on('cloud', function(asrResult, speakerIds) {",
-                "",
-                "    });",
+            "conditional": [
+                "() => {",
                 "}"
             ]
         },
-        "asset-pack": "core",
-        "parent": "75ba6549-7bed-4038-8291-63a8668807d5"
+        "asset-pack": "core"
     },
-    "1af41a85-5432-43c8-876c-e57cde46fd3d": {
-        "id": "1af41a85-5432-43c8-876c-e57cde46fd3d",
-        "class": "ListenJs",
+    "4a38a232-912f-4da0-ad9d-c221f15b60a8": {
+        "id": "4a38a232-912f-4da0-ad9d-c221f15b60a8",
+        "class": "TextToSpeech",
         "name": "",
         "options": {
-            "getOptions": [
-                "() => {",
-                "    let options = {",
-                "        heyJibo: false,",
-                "        detectEnd: false,",
-                "        incremental: false,",
-                "        authenticateSpeaker: ''",
-                "    }",
-                "    return options;",
-                "}"
-            ],
-            "getRule": [
-                "(callback) => {",
-                "    callback(\"TopRule = $* Texas Tech $*;\");",
-                "}"
-            ],
-            "onResult": [
-                "(listener) => {",
-                "    listener.on('cloud', function(asrResult, speakerIds) {",
-                "",
-                "    });",
+            "words": "I am happy!",
+            "onWord": [
+                "(word) => {",
                 "}"
             ]
         },
         "asset-pack": "core",
-        "parent": "75ba6549-7bed-4038-8291-63a8668807d5"
+        "parent": "08349313-06ae-4b96-a42f-e153beb826c2"
+    },
+    "a10b0c33-0350-4230-9f81-0826e5fd3fa4": {
+        "id": "a10b0c33-0350-4230-9f81-0826e5fd3fa4",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "e90b72a1-0046-4cc7-8915-66f86c8c59f0"
+        ],
+        "children": [
+            "c95af193-62cb-4cd9-a1cb-63472886f97c"
+        ]
+    },
+    "e90b72a1-0046-4cc7-8915-66f86c8c59f0": {
+        "id": "e90b72a1-0046-4cc7-8915-66f86c8c59f0",
+        "class": "StartOnCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "  if(notpad.moodNext == 'sad'){",
+                "    return true;",
+                "  }",
+                "  return false;",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "c95af193-62cb-4cd9-a1cb-63472886f97c": {
+        "id": "c95af193-62cb-4cd9-a1cb-63472886f97c",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "I am sad!",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "a10b0c33-0350-4230-9f81-0826e5fd3fa4"
+    },
+    "c4be766a-3866-4e94-8ab5-97a5a49a9aa1": {
+        "id": "c4be766a-3866-4e94-8ab5-97a5a49a9aa1",
+        "class": "SucceedOnCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      if (asResult.NLParse.mood == 'happy'){",
+                "        notepad.moodNext = asrResult.NLParse.mood;",
+                "      }",
+                "      else if(asResult.NLParse.mood == 'sad'){",
+                "        notepad.moodNext = asrResult.NLParse.mood;",
+                "      }",
+                "      else{",
+                "        notepad.moodNext = 'nothing';",
+                "    });",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
     }
 }

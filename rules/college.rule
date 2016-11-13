@@ -1,1 +1,3 @@
-TopRule = $* (hello world){what='hello'} $*;
+TopRule = $*
+(Texas Tech) {mood='happy'} | (UT) {mood='sad'}
+ $*;
