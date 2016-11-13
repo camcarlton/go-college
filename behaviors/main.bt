@@ -9,8 +9,7 @@
             "67b6934f-0c7e-47c8-b7dd-5ca58ad48fd5",
             "0e5a9215-9fcd-4275-a1aa-85d0522363f8",
             "7c7860ce-c2b9-46c5-8cab-fa6981b2bf7d",
-            "08349313-06ae-4b96-a42f-e153beb826c2",
-            "a10b0c33-0350-4230-9f81-0826e5fd3fa4"
+            "e01de3c4-110b-47f7-b730-9636daa98bbf"
         ],
         "decorators": [],
         "options": {}
@@ -78,34 +77,73 @@
         "asset-pack": "core",
         "parent": 1,
         "decorators": [
-            "c4be766a-3866-4e94-8ab5-97a5a49a9aa1"
+            "6b356b29-ffc7-47a0-ae11-e6a128e8e552"
         ]
     },
-    "08349313-06ae-4b96-a42f-e153beb826c2": {
-        "id": "08349313-06ae-4b96-a42f-e153beb826c2",
-        "class": "Sequence",
+    "e43b1eaf-a54d-44bd-9348-df728f044030": {
+        "id": "e43b1eaf-a54d-44bd-9348-df728f044030",
+        "class": "Listen",
         "name": "",
-        "options": {},
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "college.rule",
+            "onResult": [
+                "(listener) => {",
+                "  listener.on('cloud', function(asrResult, speakerIds) {",
+                "  if (asrResult.NLParse.mood == 'happy') {",
+                "    notepad.moodNext = asrResult.NLParse.mood;",
+                "  }",
+                "  else {",
+                "    notepad.moodNext = 'nothing';",
+                "  }",
+                "  });",
+                "  }"
+            ]
+        },
         "asset-pack": "core",
-        "parent": 1,
-        "children": [
-            "4a38a232-912f-4da0-ad9d-c221f15b60a8"
-        ],
+        "parent": "e01de3c4-110b-47f7-b730-9636daa98bbf",
+        "decorators": []
+    },
+    "3480bef0-871a-405a-8c62-c45ac6964ec6": {
+        "id": "3480bef0-871a-405a-8c62-c45ac6964ec6",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Guns Up",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "ed1a7df7-e8f6-470e-aae7-271fd5a62123",
         "decorators": [
-            "fc607d46-a3ce-4b07-85ac-f1aad6ec75e7"
+            "dbaa6f3e-6bed-4f5f-8e28-f7085693815f"
         ]
     },
-    "fc607d46-a3ce-4b07-85ac-f1aad6ec75e7": {
-        "id": "fc607d46-a3ce-4b07-85ac-f1aad6ec75e7",
+    "dbaa6f3e-6bed-4f5f-8e28-f7085693815f": {
+        "id": "dbaa6f3e-6bed-4f5f-8e28-f7085693815f",
         "class": "StartOnCondition",
         "name": "",
         "options": {
             "init": [
                 "() => {",
-                "  if(notpad.moodNext == 'happy'){",
+                "  if (asrResult.NLParse.mood == 'happy') {",
                 "    return true;",
                 "  }",
-                "  return false;",
+                "  else {",
+                "    return false;",
+                "  }",
                 "}"
             ],
             "conditional": [
@@ -115,89 +153,56 @@
         },
         "asset-pack": "core"
     },
-    "4a38a232-912f-4da0-ad9d-c221f15b60a8": {
-        "id": "4a38a232-912f-4da0-ad9d-c221f15b60a8",
-        "class": "TextToSpeech",
+    "e01de3c4-110b-47f7-b730-9636daa98bbf": {
+        "id": "e01de3c4-110b-47f7-b730-9636daa98bbf",
+        "class": "Parallel",
         "name": "",
         "options": {
-            "words": "I am happy!",
-            "onWord": [
-                "(word) => {",
-                "}"
-            ]
+            "succeedOnOne": false
         },
         "asset-pack": "core",
-        "parent": "08349313-06ae-4b96-a42f-e153beb826c2"
+        "parent": 1,
+        "children": [
+            "e43b1eaf-a54d-44bd-9348-df728f044030",
+            "ed1a7df7-e8f6-470e-aae7-271fd5a62123"
+        ]
     },
-    "a10b0c33-0350-4230-9f81-0826e5fd3fa4": {
-        "id": "a10b0c33-0350-4230-9f81-0826e5fd3fa4",
+    "ed1a7df7-e8f6-470e-aae7-271fd5a62123": {
+        "id": "ed1a7df7-e8f6-470e-aae7-271fd5a62123",
         "class": "Sequence",
         "name": "",
         "options": {},
         "asset-pack": "core",
-        "parent": 1,
-        "decorators": [
-            "e90b72a1-0046-4cc7-8915-66f86c8c59f0"
-        ],
+        "parent": "e01de3c4-110b-47f7-b730-9636daa98bbf",
         "children": [
-            "c95af193-62cb-4cd9-a1cb-63472886f97c"
+            "3480bef0-871a-405a-8c62-c45ac6964ec6"
         ]
     },
-    "e90b72a1-0046-4cc7-8915-66f86c8c59f0": {
-        "id": "e90b72a1-0046-4cc7-8915-66f86c8c59f0",
-        "class": "StartOnCondition",
+    "6b356b29-ffc7-47a0-ae11-e6a128e8e552": {
+        "id": "6b356b29-ffc7-47a0-ae11-e6a128e8e552",
+        "class": "SucceedOnListen",
         "name": "",
         "options": {
-            "init": [
+            "getOptions": [
                 "() => {",
-                "  if(notpad.moodNext == 'sad'){",
-                "    return true;",
-                "  }",
-                "  return false;",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
                 "}"
             ],
-            "conditional": [
-                "() => {",
-                "}"
-            ]
-        },
-        "asset-pack": "core"
-    },
-    "c95af193-62cb-4cd9-a1cb-63472886f97c": {
-        "id": "c95af193-62cb-4cd9-a1cb-63472886f97c",
-        "class": "TextToSpeech",
-        "name": "",
-        "options": {
-            "words": "I am sad!",
-            "onWord": [
-                "(word) => {",
-                "}"
-            ]
-        },
-        "asset-pack": "core",
-        "parent": "a10b0c33-0350-4230-9f81-0826e5fd3fa4"
-    },
-    "c4be766a-3866-4e94-8ab5-97a5a49a9aa1": {
-        "id": "c4be766a-3866-4e94-8ab5-97a5a49a9aa1",
-        "class": "SucceedOnCondition",
-        "name": "",
-        "options": {
-            "init": [
+            "rule": "college.rule",
+            "onResult": [
                 "(listener) => {",
                 "    listener.on('cloud', function(asrResult, speakerIds) {",
-                "      if (asResult.NLParse.mood == 'happy'){",
+                "      if (asrResult.NLParse.mood == 'happy') {",
                 "        notepad.moodNext = asrResult.NLParse.mood;",
+                "        return true;",
                 "      }",
-                "      else if(asResult.NLParse.mood == 'sad'){",
-                "        notepad.moodNext = asrResult.NLParse.mood;",
-                "      }",
-                "      else{",
-                "        notepad.moodNext = 'nothing';",
                 "    });",
-                "}"
-            ],
-            "conditional": [
-                "() => {",
                 "}"
             ]
         },
