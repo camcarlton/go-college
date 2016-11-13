@@ -9,9 +9,11 @@
             "67b6934f-0c7e-47c8-b7dd-5ca58ad48fd5",
             "0e5a9215-9fcd-4275-a1aa-85d0522363f8",
             "7c7860ce-c2b9-46c5-8cab-fa6981b2bf7d",
-            "e01de3c4-110b-47f7-b730-9636daa98bbf"
+            "00b84717-6026-42a5-b00b-ca0e94d9b54e"
         ],
-        "decorators": [],
+        "decorators": [
+            "773df591-701b-46ae-b6d7-62a5a99ee5d5"
+        ],
         "options": {}
     },
     "meta": {
@@ -80,104 +82,6 @@
             "6b356b29-ffc7-47a0-ae11-e6a128e8e552"
         ]
     },
-    "e43b1eaf-a54d-44bd-9348-df728f044030": {
-        "id": "e43b1eaf-a54d-44bd-9348-df728f044030",
-        "class": "Listen",
-        "name": "",
-        "options": {
-            "getOptions": [
-                "() => {",
-                "    let options = {",
-                "        heyJibo: false,",
-                "        detectEnd: false,",
-                "        incremental: false,",
-                "        authenticateSpeaker: ''",
-                "    }",
-                "    return options;",
-                "}"
-            ],
-            "rule": "college.rule",
-            "onResult": [
-                "(listener) => {",
-                "  listener.on('cloud', function(asrResult, speakerIds) {",
-                "  if (asrResult.NLParse.mood == 'happy') {",
-                "    notepad.moodNext = asrResult.NLParse.mood;",
-                "  }",
-                "  else {",
-                "    notepad.moodNext = 'nothing';",
-                "  }",
-                "  });",
-                "  }"
-            ]
-        },
-        "asset-pack": "core",
-        "parent": "e01de3c4-110b-47f7-b730-9636daa98bbf",
-        "decorators": []
-    },
-    "3480bef0-871a-405a-8c62-c45ac6964ec6": {
-        "id": "3480bef0-871a-405a-8c62-c45ac6964ec6",
-        "class": "TextToSpeech",
-        "name": "",
-        "options": {
-            "words": "Guns Up",
-            "onWord": [
-                "(word) => {",
-                "}"
-            ]
-        },
-        "asset-pack": "core",
-        "parent": "ed1a7df7-e8f6-470e-aae7-271fd5a62123",
-        "decorators": [
-            "dbaa6f3e-6bed-4f5f-8e28-f7085693815f"
-        ]
-    },
-    "dbaa6f3e-6bed-4f5f-8e28-f7085693815f": {
-        "id": "dbaa6f3e-6bed-4f5f-8e28-f7085693815f",
-        "class": "StartOnCondition",
-        "name": "",
-        "options": {
-            "init": [
-                "() => {",
-                "  if (asrResult.NLParse.mood == 'happy') {",
-                "    return true;",
-                "  }",
-                "  else {",
-                "    return false;",
-                "  }",
-                "}"
-            ],
-            "conditional": [
-                "() => {",
-                "}"
-            ]
-        },
-        "asset-pack": "core"
-    },
-    "e01de3c4-110b-47f7-b730-9636daa98bbf": {
-        "id": "e01de3c4-110b-47f7-b730-9636daa98bbf",
-        "class": "Parallel",
-        "name": "",
-        "options": {
-            "succeedOnOne": false
-        },
-        "asset-pack": "core",
-        "parent": 1,
-        "children": [
-            "e43b1eaf-a54d-44bd-9348-df728f044030",
-            "ed1a7df7-e8f6-470e-aae7-271fd5a62123"
-        ]
-    },
-    "ed1a7df7-e8f6-470e-aae7-271fd5a62123": {
-        "id": "ed1a7df7-e8f6-470e-aae7-271fd5a62123",
-        "class": "Sequence",
-        "name": "",
-        "options": {},
-        "asset-pack": "core",
-        "parent": "e01de3c4-110b-47f7-b730-9636daa98bbf",
-        "children": [
-            "3480bef0-871a-405a-8c62-c45ac6964ec6"
-        ]
-    },
     "6b356b29-ffc7-47a0-ae11-e6a128e8e552": {
         "id": "6b356b29-ffc7-47a0-ae11-e6a128e8e552",
         "class": "SucceedOnListen",
@@ -198,11 +102,107 @@
             "onResult": [
                 "(listener) => {",
                 "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      console.log(asrResult.NLParse);",
                 "      if (asrResult.NLParse.mood == 'happy') {",
                 "        notepad.moodNext = asrResult.NLParse.mood;",
-                "        return true;",
+                "        console.log(notepad.moodNext);",
                 "      }",
+                "      else {",
+                "        notepad.moodNext = 'sad'",
+                "      }",
+                "      return true;",
+                "    ",
                 "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "skipped": false
+    },
+    "773df591-701b-46ae-b6d7-62a5a99ee5d5": {
+        "id": "773df591-701b-46ae-b6d7-62a5a99ee5d5",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "00b84717-6026-42a5-b00b-ca0e94d9b54e": {
+        "id": "00b84717-6026-42a5-b00b-ca0e94d9b54e",
+        "class": "Switch",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            "4f634aa6-f8b9-4229-85b9-0640303fa7d3",
+            "48c09110-defa-410d-a25f-c7d21b11320e"
+        ]
+    },
+    "4f634aa6-f8b9-4229-85b9-0640303fa7d3": {
+        "id": "4f634aa6-f8b9-4229-85b9-0640303fa7d3",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Guns Up",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "00b84717-6026-42a5-b00b-ca0e94d9b54e",
+        "decorators": [
+            "a6030fb2-5bb2-4455-b2c1-84c6f4163ff3"
+        ]
+    },
+    "48c09110-defa-410d-a25f-c7d21b11320e": {
+        "id": "48c09110-defa-410d-a25f-c7d21b11320e",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "You suck!",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "00b84717-6026-42a5-b00b-ca0e94d9b54e",
+        "decorators": [
+            "d7b973f7-8f8f-4570-bd00-428950c85fa5"
+        ]
+    },
+    "a6030fb2-5bb2-4455-b2c1-84c6f4163ff3": {
+        "id": "a6030fb2-5bb2-4455-b2c1-84c6f4163ff3",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  return notepad.moodNext === 'happy';",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "d7b973f7-8f8f-4570-bd00-428950c85fa5": {
+        "id": "d7b973f7-8f8f-4570-bd00-428950c85fa5",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  return notepad.moodNext === 'sad';",
                 "}"
             ]
         },
